@@ -101,7 +101,7 @@ fn detect_p11(text: &str) -> Vec<Finding> {
             pattern: PatternId::P11AccessGap,
             span: span.clone(),
             message:
-                "handled_access_fs is set but LANDLOCK_ACCESS_FS_TRUNCATE (V3, kernel ≥ 5.19) is never \
+                "handled_access_fs is set but LANDLOCK_ACCESS_FS_TRUNCATE (V3, kernel ≥ 6.2) is never \
                  referenced in this file; ftruncate() on files inside WRITE-granted directories is \
                  not mediated by Landlock."
                     .into(),

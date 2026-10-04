@@ -85,7 +85,7 @@ fn parse_args() -> Result<Args> {
 
 fn print_help() {
     eprintln!(
-        "landlock-lint v0.1.2 — detector for recurring Landlock misuses (Rust + C)\n\
+        "landlock-lint v0.1.3 — detector for recurring Landlock misuses (Rust + C)\n\
          \n\
          USAGE:\n  \
              landlock-lint <path>... [--explain] [--summary <out.md>] \\\n  \

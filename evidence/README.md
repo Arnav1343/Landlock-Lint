@@ -10,8 +10,7 @@ Study of Common Deployment Errors and Their Security Impact" (ICISS), Sections
   third-party source itself; clone each repository at the listed commit to
   reconstruct the corpus.
 - **`findings.txt`** — raw `path:line:col  PATTERN_ID  message` output from this
-  tag (`v0.1.2`) against the reconstructed corpus. 102 lines of findings plus
-  the trailing count.
+  tag (`v0.1.3`) against the reconstructed corpus: 102 lines, one per finding.
 - **`summary.md`** — the `--summary` markdown table (project × pattern counts
   per tier) from the same run.
 
@@ -20,7 +19,7 @@ Study of Common Deployment Errors and Their Security Impact" (ICISS), Sections
 ```sh
 git clone https://github.com/Arnav1343/Landlock-Lint.git
 cd Landlock-Lint
-git checkout v0.1.2
+git checkout v0.1.3
 cargo build --release
 
 # Clone each project in corpus-manifest.md at its pinned commit into

@@ -45,7 +45,7 @@ src/sandbox.rs:88:14  P4  restrict_self()'s RestrictionStatus is discarded; Rule
 `--explain` (grouped, human-readable — for developers):
 
 ```text
-landlock-lint v0.1.2
+landlock-lint v0.1.3
 Scanned: my-project
 
 Found 3 issue(s) in 1 file(s).

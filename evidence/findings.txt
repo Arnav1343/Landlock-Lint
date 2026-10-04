@@ -1,6 +1,6 @@
 codex/codex-rs/linux-sandbox/src/landlock.rs:140:20  P_HARDCODED_ABI  ABI::V5 hardcoded with no probe — silently misses newer ABIs on supporting kernels.  (V5 adds IoctlDev; scope features land in V6 — hardcoding V5 silently misses them)
 codex/codex-rs/linux-sandbox/src/landlock.rs:146:10  P_SCOPE_GAP  ruleset calls handle_access(...) and restrict_self() but never .scope(Scope::AbstractUnixSocket | Scope::Signal); GHSA-27vp-2mmc-vmh3 abstract-Unix-socket escape applies.
-suricata/src/util-landlock.c:104:19  P11  handled_access_fs is set but LANDLOCK_ACCESS_FS_TRUNCATE (V3, kernel ≥ 5.19) is never referenced in this file; ftruncate() on files inside WRITE-granted directories is not mediated by Landlock.
+suricata/src/util-landlock.c:104:19  P11  handled_access_fs is set but LANDLOCK_ACCESS_FS_TRUNCATE (V3, kernel ≥ 6.2) is never referenced in this file; ftruncate() on files inside WRITE-granted directories is not mediated by Landlock.
 suricata/src/util-landlock.c:104:19  P11  handled_access_fs is set but LANDLOCK_ACCESS_FS_IOCTL_DEV (V5, kernel ≥ 6.10) is never referenced in this file; ioctl() on device files inside granted paths is not mediated by Landlock.
 suricata/src/util-landlock.c:137:9  P_SCOPE_GAP  landlock_restrict_self() is called but the file never references LANDLOCK_SCOPE_* or sets landlock_ruleset_attr.scoped; GHSA-27vp-2mmc-vmh3 abstract-Unix-socket escape applies.
 tier2_go/island/src/main.rs:274:17  P4  restrict_self()'s RestrictionStatus is discarded; RulesetStatus::NotEnforced / PartiallyEnforced become silent happy paths.
@@ -100,6 +100,3 @@ tier3_individual/soar/crates/soar-core/src/sandbox.rs:214:14  P3  Ruleset::defau
 tier3_individual/soar/crates/soar-core/src/sandbox.rs:423:10  P4  restrict_self()'s RestrictionStatus is discarded; RulesetStatus::NotEnforced / PartiallyEnforced become silent happy paths.
 tier3_individual/uhyve/src/isolation/landlock.rs:117:18  P_HARDCODED_ABI  ABI::V4 hardcoded with no probe — silently misses newer ABIs on supporting kernels.
 tier3_individual/uhyve/src/isolation/landlock.rs:130:5  P_SCOPE_GAP  ruleset calls handle_access(...) and restrict_self() but never .scope(Scope::AbstractUnixSocket | Scope::Signal); GHSA-27vp-2mmc-vmh3 abstract-Unix-socket escape applies.
-
-102 findings.
-Summary written to /tmp/landlock-lint-verify-summary.md

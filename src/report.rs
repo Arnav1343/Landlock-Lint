@@ -222,7 +222,7 @@ fn explain(pattern: PatternId, is_c: bool) -> (&'static str, &'static str, &'sta
             "Pinning `ABI::V<n>` configures your sandbox for that ABI's features\n\
              only. On a kernel that supports a higher ABI you miss everything\n\
              added since — including:\n\
-              • V3 (5.19): FS_TRUNCATE — `ftruncate()` mediated\n\
+              • V3 (6.2): FS_TRUNCATE — `ftruncate()` mediated\n\
               • V5 (6.10): FS_IOCTL_DEV — `ioctl()` on device files mediated\n\
               • V6 (6.7) : scope rules — abstract-Unix-socket / signal escape\n\
                             closure (the GHSA-27vp-2mmc-vmh3 fix)\n\
@@ -266,7 +266,7 @@ fn explain(pattern: PatternId, is_c: bool) -> (&'static str, &'static str, &'sta
             "FS access mask is missing V3 / V5 bits — ftruncate() and ioctl() bypass the sandbox.",
             "Even when `handled_access_fs` is set, Landlock only mediates the bits\n\
              you explicitly request. Without:\n\
-              • LANDLOCK_ACCESS_FS_TRUNCATE   (V3, kernel ≥ 5.19): `ftruncate()`\n\
+              • LANDLOCK_ACCESS_FS_TRUNCATE   (V3, kernel ≥ 6.2): `ftruncate()`\n\
                 on files inside write-granted directories is NOT mediated — a\n\
                 sandboxed process can shrink/extend files arbitrarily.\n\
               • LANDLOCK_ACCESS_FS_IOCTL_DEV  (V5, kernel ≥ 6.10): `ioctl()` on\n\
