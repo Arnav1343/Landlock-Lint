@@ -2,13 +2,13 @@
 
 A focused static analyser for misuse patterns in [Landlock](https://docs.kernel.org/userspace-api/landlock.html) sandbox code.
 
-Detects eight recurring bugs across Rust (the [`landlock`](https://crates.io/crates/landlock) crate) and C (raw `landlock_*` syscalls). Each finding cites a specific file, line, and column, with a one-line explanation of why it matters — or, with `--explain`, a full why-it-matters paragraph and a concrete code fix.
+Detects four recurring misuse patterns across Rust (the [`landlock`](https://crates.io/crates/landlock) crate) and C (raw `landlock_*` syscalls), plus one C-only check (`P11`) for a filesystem access-rights coverage gap. Each finding cites a specific file, line, and column, with a one-line explanation of why it matters — or, with `--explain`, a full why-it-matters paragraph and a concrete code fix.
 
 ## Why this exists
 
 Landlock is a Linux LSM that lets userspace processes sandbox themselves. The API is small, but easy to use incorrectly in ways that compile, run, and *look* like a sandbox while leaving real escapes open. The most prominent example is [GHSA-27vp-2mmc-vmh3](https://github.com/advisories/GHSA-27vp-2mmc-vmh3) — a V6-scope gap that lets a sandboxed process escape via abstract Unix sockets to the systemd user bus.
 
-`landlock-lint` mechanically detects that gap and seven related patterns, so reviewers don't have to grep by hand.
+`landlock-lint` automatically detects that gap, three related misuse patterns, and one C-only access-rights coverage check, so reviewers don't have to grep by hand.
 
 ## Install
 
