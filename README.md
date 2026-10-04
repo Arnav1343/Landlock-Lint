@@ -71,6 +71,18 @@ src/sandbox.rs
 
 ## Patterns detected
 
+This tool's pattern IDs predate the paper's renumbering. If you're cross-referencing
+"Landlock in Practice: An Empirical Study of Common Deployment Errors and Their
+Security Impact" (ICISS), here's the mapping:
+
+| This tool | Paper | Name |
+|---|---|---|
+| `P_SCOPE_GAP` | `P1` | Missing V6 scope restrictions |
+| `P_HARDCODED_ABI` | `P2` | Hardcoded ABI version literal |
+| `P3` | `P3` | Fake ABI support probe |
+| `P4` | `P4` | Discarded RulesetStatus |
+| `P11` (C-only) | `CS1` | Incomplete access-rights mask (the Suricata case study) |
+
 ### Rust (`.rs`)
 
 | ID | What it catches | Why it matters |
@@ -150,6 +162,15 @@ Known gaps:
 - **Macro expansion** — Landlock calls wrapped in macros are invisible to the AST visit. None of the projects in the original test corpus do this.
 - **C-side full parser** — currently regex/line-level. A `tree-sitter-c` rewrite is planned.
 - **`--fix` mode** — print a suggested patch per finding.
+
+## Reproducing the paper's corpus scan
+
+The [`evidence/`](evidence/) directory pins the 58-project corpus (by commit
+hash, not redistributed source) and the raw output of this tag against it:
+102 findings across 33 project sites, matching the numbers cited in the
+paper. See [`evidence/README.md`](evidence/README.md) for exact reproduction
+steps. PoC evidence is withheld pending coordinated disclosure (see the
+paper, Section 4.5).
 
 ## Patterns reference
 
